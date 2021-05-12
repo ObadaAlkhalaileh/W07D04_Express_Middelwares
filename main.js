@@ -9,13 +9,13 @@ const users = ["John", "Mark"];
 const router = express.Router()
 
 router.use( /*"/users" this is wrong*/ (req, res, next) => {
-    console.log("router test");
+    console.log(users);
     next();
 });
-router.use('/', (req, res, next) => {
+/*router.use('/', (req, res, next) => {
     console.log("router test /");
     next();
-});
+});*/
 
 app.use("/users", router)
 
