@@ -5,6 +5,19 @@ const app = express();
 const port = 3000;
 
 const users = ["John", "Mark"];
+
+//Pulse 4
+app.use(express.json())
+
+//practice 2
+
+app.use((req, res, next) => {
+
+    console.log(req.body.name)
+    next()
+
+})
+
 //Practice 1
 const router = express.Router()
 
@@ -12,15 +25,13 @@ router.use( /*"/users" this is wrong*/ (req, res, next) => {
     console.log(users);
     next();
 });
-/*router.use('/', (req, res, next) => {
-    console.log("router test /");
+router.use('/', (req, res, next) => {
+    console.log("router test");
     next();
-});*/
+});
 
 app.use("/users", router)
 
-//Pulse 4
-app.use(express.json())
 
 //Pulse 1&5
 const logUsers = (req, res, next) => {
@@ -70,8 +81,21 @@ app.use((errrr, req, res, next) => {
         //no need for next because this is a dead end and will show response on client side
 })
 
-// Practice 1
+//Practice 2
+app.post("/users/create", (req, res, next) => {
+    if (req.body.name) {
+        console.log("body is defined")
+        res.status = 201
+        users.push(req.body.name)
+        console.log(users)
+        res.json("name added")
+    } else {
+        console.log("body is not defined")
 
+        res.status = 404
+        res.json("please enter a name")
+    }
+});
 
 
 app.get("/users", (req, res, next) => {
