@@ -13,7 +13,7 @@ app.use(express.json())
 const logUsers = (req, res, next) => {
 
     //dont use res in the first middlewares because it will prevent next() and will stop the cycle
-    const err = new Error("Internal server error");
+    const err = new Error("Try another message hoooo");
     err.status = 404
     if (users[0] === undefined) {
         next(err);
@@ -44,16 +44,21 @@ const logMethod = (req, res, next) => {
 app.use('/users', logMethod)
 
 //Pulse 5
-app.use((err, req, res, next) => {
-    res.status = err.status
+app.use((errrr, req, res, next) => {
+    //you can change the name of error parameter to anyhting you want
+    //since you passed it from the request API
+    res.status = errrr.status
     res.json({
             error: {
-                status: err.status,
-                message: err.message
+                status: errrr.status,
+                message: errrr.message
             }
         })
         //no need for next because this is a dead end and will show response on client side
 })
+
+// Practice 1
+
 
 
 app.get("/users", (req, res, next) => {
