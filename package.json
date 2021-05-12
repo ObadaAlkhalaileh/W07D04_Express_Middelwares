@@ -1,0 +1,24 @@
+{
+    "name": "w07d04_express_middelwares",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "dev": "nodemon main.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ObadaAlkhalaileh/W07D04_Express_Middelwares.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ObadaAlkhalaileh/W07D04_Express_Middelwares/issues"
+    },
+    "homepage": "https://github.com/ObadaAlkhalaileh/W07D04_Express_Middelwares#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
