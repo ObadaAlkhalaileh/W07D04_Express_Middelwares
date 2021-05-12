@@ -4,7 +4,20 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const users = [];
+const users = ["John", "Mark"];
+//Practice 1
+const router = express.Router()
+
+router.use( /*"/users" this is wrong*/ (req, res, next) => {
+    console.log("router test");
+    next();
+});
+router.use('/', (req, res, next) => {
+    console.log("router test /");
+    next();
+});
+
+app.use("/users", router)
 
 //Pulse 4
 app.use(express.json())
