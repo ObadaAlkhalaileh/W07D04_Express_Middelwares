@@ -19,20 +19,16 @@ app.use((req, res, next) => {
 })*/
 
 //Practice 1
-const router = express.Router()
+const router = express.Router();
 
 router.use( /*"/users"*/ (req, res, next) => {
     console.log("router test");
     // console.log(users);
-    res.send(users)
-        // next();
+    console.log(users);
+    next();
 });
-// router.use( /*'/'*/ "/users", (req, res, next) => {
-//     console.log("endpoint test");
-//     res.send(users)
-// });
 
-// the router is used at the last so i ensure that all other middlewares are activated (because the router has a dead end (res.send))
+app.use("/users", router)
 
 //Pulse 1&5
 const logUsers = (req, res, next) => {
@@ -102,9 +98,6 @@ app.post("/users/create", (req, res, next) => {
 app.get("/users", (req, res, next) => {
     res.json(users);
 });
-//we need to put router use in the last so its invoked after all other middlewares are invoked
-//because the router has a dead end 
-app.use("/users", router)
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
