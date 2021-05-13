@@ -79,31 +79,34 @@ app.post("/users/create", (req, res, next) => {
 });
 
 //Practice 3
-const router2 = express.Router();
+const productsRouter = express.Router();
 
-router2.use((req, res, next) => {
-
+productsRouter.use((req, res, next) => {
+    console.log("products router")
     next();
 });
 
-app.use("/products", router2)
+app.use("/products", productsRouter)
 
 //Practice 4
 const products = ["keyboard", "mouse"];
 
 app.post("/products/update", (req, res, next) => {
-    if (req.body.product) {
-        products.splice(0, 1, req.body.product)
-        console.log(products)
-        res.status = 200
-        res.json("product added seuccecfuly")
+        if (req.body.product) {
+            products.splice(0, 1, req.body.product)
+            console.log(products)
+            res.status = 200
+            res.json("product added seuccecfuly")
 
-    } else {
-        const err = new Error("no product entered");
-        err.status = 404
-        next(err);
-    }
-})
+        } else {
+            const err = new Error("no product entered");
+            err.status = 404
+            next(err);
+        }
+    })
+    //Practice 5
+
+
 
 app.get("/users", (req, res, next) => {
     res.json(users);
