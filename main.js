@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const users = [];
+const users = ["John", "Mark"];
 
 //Pulse 4
 app.use(express.json())
@@ -19,20 +19,21 @@ app.use((req, res, next) => {
 })*/
 
 //Practice 1
-// const router = express.Router()
+const router = express.Router()
 
-// router.use( /*"/users" this is wrong*/ (req, res, next) => {
-//     /*console.log(users);*/
-//     console.log("router test");
-//     next();
-// });
+router.use( /*"/users"*/ (req, res, next) => {
+    console.log("router test");
+    // console.log(users);
+    res.send(users)
+        // next();
+});
 // router.use( /*'/'*/ "/users", (req, res, next) => {
 //     console.log("endpoint test");
 //     res.send(users)
 
 // });
 
-// app.use( /*"/users"*/ "/", router)
+app.use("/users", router)
 
 
 //Pulse 1&5
