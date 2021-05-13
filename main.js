@@ -92,19 +92,27 @@ app.use("/products", productsRouter)
 const products = ["keyboard", "mouse"];
 
 app.post("/products/update", (req, res, next) => {
-        if (req.body.product) {
-            products.splice(0, 1, req.body.product)
-            console.log(products)
-            res.status = 200
-            res.json("product added seuccecfuly")
+    if (req.body.product) {
+        products.splice(0, 1, req.body.product)
+        console.log(products)
+        res.status = 200
+        res.json("product added seuccecfuly")
 
-        } else {
-            const err = new Error("no product entered");
-            err.status = 404
-            next(err);
-        }
-    })
-    //Practice 5
+    } else {
+        const err = new Error("no product entered");
+        err.status = 404
+        next(err);
+    }
+})
+
+
+//Practice 5 solved with practice 3
+
+//Practice 6
+app.use(("*", (req, res) => {
+    res.status = 404
+    res.send("NOT FOUND")
+}))
 
 
 
