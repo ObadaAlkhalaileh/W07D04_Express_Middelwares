@@ -78,6 +78,18 @@ app.post("/users/create", (req, res, next) => {
     };
 });
 
+//Practice 3
+const router2 = express.Router();
+
+router2.use((req, res, next) => {
+
+    next();
+});
+
+app.use("/products", router2)
+
+//Practice 4
+
 
 //Pulse 5
 app.use((errrr, req, res, next) => {
