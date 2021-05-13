@@ -89,7 +89,25 @@ router2.use((req, res, next) => {
 app.use("/products", router2)
 
 //Practice 4
+const products = ["keyboard", "mouse"];
 
+app.post("/products/update", (req, res, next) => {
+    if (req.body.product) {
+        products.splice(0, 1, req.body.product)
+        console.log(products)
+        res.status = 200
+        res.json("product added seuccecfuly")
+
+    } else {
+        const err = new Error("no product entered");
+        err.status = 404
+        next(err);
+    }
+})
+
+app.get("/users", (req, res, next) => {
+    res.json(users);
+});
 
 //Pulse 5
 app.use((errrr, req, res, next) => {
@@ -103,11 +121,6 @@ app.use((errrr, req, res, next) => {
         }
     });
     //no need for next because this is a dead end and will show response on client side
-});
-
-
-app.get("/users", (req, res, next) => {
-    res.json(users);
 });
 
 app.listen(port, () => {
