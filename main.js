@@ -4,42 +4,44 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const users = ["John", "Mark"];
+const users = [];
 
 //Pulse 4
 app.use(express.json())
 
 //practice 2
-
+//a middleware that will log the request body if found
+/*
 app.use((req, res, next) => {
-
     console.log(req.body.name)
     next()
 
-})
+})*/
 
 //Practice 1
-const router = express.Router()
+// const router = express.Router()
 
-router.use( /*"/users" this is wrong*/ (req, res, next) => {
-    console.log(users);
-    next();
-});
-router.use('/', (req, res, next) => {
-    console.log("router test");
-    next();
-});
+// router.use( /*"/users" this is wrong*/ (req, res, next) => {
+//     /*console.log(users);*/
+//     console.log("router test");
+//     next();
+// });
+// router.use( /*'/'*/ "/users", (req, res, next) => {
+//     console.log("endpoint test");
+//     res.send(users)
 
-app.use("/users", router)
+// });
+
+// app.use( /*"/users"*/ "/", router)
 
 
 //Pulse 1&5
 const logUsers = (req, res, next) => {
 
     //dont use res in the first middlewares because it will prevent next() and will stop the cycle
-    const err = new Error("Try another message hoooo");
-    err.status = 404
     if (users[0] === undefined) {
+        const err = new Error("no users");
+        err.status = 404
         next(err);
     } else { // else here so important 
         console.log(users);
@@ -87,7 +89,7 @@ app.post("/users/create", (req, res, next) => {
         console.log("body is defined")
         res.status = 201
         users.push(req.body.name)
-        console.log(users)
+            // console.log(users)
         res.json("name added")
     } else {
         console.log("body is not defined")
