@@ -109,10 +109,21 @@ app.post("/products/update", (req, res, next) => {
 //Practice 5 solved with practice 3
 
 //Practice 6
-app.use(("*", (req, res) => {
-    res.status = 404
-    res.send("NOT FOUND")
-}))
+app.use("*", (req, res) => {
+    // res.status = 404
+    // res.send("NOT FOUND")
+
+    const err = new Error("unassigned destination");
+    err.status = 404
+
+    res.status = err.status
+    res.json({
+        error: {
+            status: err.status,
+            message: err.message
+        }
+    })
+})
 
 
 
